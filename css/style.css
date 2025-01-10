@@ -345,3 +345,96 @@ button[type="submit"]:hover {
     position: relative;
     margin-bottom: 1.5rem;
 }
+.food-status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.food-status.expired {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.food-status.expiring-soon {
+    background-color: #ffa500;
+    color: black;
+}
+
+.food-status.expiring-week {
+    background-color: #ffff00;
+    color: black;
+}
+
+.food-status.good {
+    background-color: #4caf50;
+    color: white;
+}
+.food-card.expired {
+    border-color: #ff4d4d;
+    background-color: rgba(255, 77, 77, 0.1);
+}
+
+.food-status.expired {
+    background-color: #ff4d4d;
+}
+
+.food-card.expired::before {
+    background-color: #ff4d4d;
+}
+.category-section {
+    margin-bottom: 2rem;
+}
+
+.category-section h2 {
+    color: #333;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #eee;
+}
+
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.view-by-tags {
+    margin-top: auto;
+}
+.nav-section-header {
+    padding: 10px 15px;
+    color: #666;
+    font-weight: bold;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 15px;
+}
+
+.category-links {
+    margin-top: auto;
+    margin-bottom: 15px;
+}
+
+.category-link {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    font-size: 0.9em;
+}
+
+.category-link i {
+    margin-right: 10px;
+    font-size: 0.9em;
+}
+
+.category-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}

@@ -2,6 +2,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('registerForm');
     const password = document.getElementById('password');
     const confirmPassword = document.getElementById('confirmPassword');
+    const modal = document.getElementById('termsModal');
+    const termsLink = document.getElementById('termsLink');
+    const privacyLink = document.getElementById('privacyLink');
+    const closeBtn = document.querySelector('.close');
     
     // Password toggle functionality
     const passwordToggles = document.querySelectorAll('.password-toggle');
@@ -13,11 +17,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const icon = this.querySelector('i');
             
             if (input.type === 'password') {
-                input.type = 'text';  // Show password
+                input.type = 'text';
                 icon.classList.remove('fa-eye-slash');
                 icon.classList.add('fa-eye');
             } else {
-                input.type = 'password';  // Hide password
+                input.type = 'password';
                 icon.classList.remove('fa-eye');
                 icon.classList.add('fa-eye-slash');
             }
@@ -39,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         removeError();
 
-        // Validation
         if (!fullName || !email || !password.value) {
             showError('Please fill in all fields');
             return;
@@ -70,10 +73,8 @@ document.addEventListener('DOMContentLoaded', function() {
         button.disabled = true;
 
         try {
-            // Get existing users or initialize empty array
             let users = JSON.parse(localStorage.getItem('users') || '[]');
             
-            // Check if email already exists
             if (users.some(user => user.email === email)) {
                 showError('An account with this email already exists');
                 button.innerHTML = 'Create Account';
@@ -81,20 +82,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Add new user
             users.push({
                 fullName,
                 email,
                 password: password.value
             });
 
-            // Save to localStorage
             localStorage.setItem('users', JSON.stringify(users));
             
             button.innerHTML = '✓ Account Created!';
             button.classList.add('success');
             
-            // Redirect to login page after success
             setTimeout(() => {
                 window.location.href = 'index.html';
             }, 1000);
@@ -148,13 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Get modal elements
-    const modal = document.getElementById('termsModal');
-    const termsLink = document.getElementById('termsLink');
-    const privacyLink = document.getElementById('privacyLink');
-    const closeBtn = document.querySelector('.close');
-
-    // Open modal when clicking either link
+    // Modal functionality
     termsLink.onclick = function(e) {
         e.preventDefault();
         modal.style.display = "block";
@@ -165,15 +157,32 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.style.display = "block";
     }
 
-    // Close modal when clicking X
     closeBtn.onclick = function() {
         modal.style.display = "none";
     }
 
-    // Close modal when clicking outside
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
     }
-}); 
+
+    // Add notification functionality
+    function showNotification(message) {
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.textContent = message;
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.classList.add('show');
+        }, 100);
+
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => {
+                notification.remove();
+            }, 300);
+        }, 3000);
+    }
+});
