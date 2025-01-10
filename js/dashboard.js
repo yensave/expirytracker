@@ -4,6 +4,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const modal = document.getElementById('addFoodModal');
     const closeBtn = document.querySelector('.close');
     const addFoodForm = document.getElementById('addFoodForm');
+    // Add active class handling to all navigation links
+const navLinks = document.querySelectorAll('.nav-links li a');
+
+navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        // Remove active class from all links
+        navLinks.forEach(l => l.parentElement.classList.remove('active'));
+        // Add active class to clicked link
+        this.parentElement.classList.add('active');
+    });
+});
+
     const foodGrid = document.querySelector('.food-grid');
     const expiredLink = document.querySelector('[data-section="expired"]');
 if (expiredLink) {
@@ -279,41 +291,29 @@ function renderTaggedItems(taggedItems) {
             return;
         }
     
+        foodItems.forEach(item => {
+            const daysUntilExpiry = calculateDaysUntilExpiry(item.expiryDate);
+            const expiryText = daysUntilExpiry <= 0 
+                ? `Expired ${Math.abs(daysUntilExpiry)} days ago`
+                : `Expires in: ${daysUntilExpiry} days`;
+            const card = document.createElement('div');
+            card.className = `food-card ${item.status}`;
             
-            foodItems.forEach(item => {
-                const daysUntilExpiry = calculateDaysUntilExpiry(item.expiryDate);
-                const expiryText = daysUntilExpiry <= 0 ? 'Expired' : `Expires in: ${daysUntilExpiry} days`;
-                const card = document.createElement('div');
-                card.className = `food-card ${item.status}`;
-                let statusLabel = '';
-            switch(item.status) {
-                case 'expired':
-                    statusLabel = '';
-                    break;
-                case 'expiring-soon':
-                    statusLabel = '';
-                    break;
-                case 'expiring-week':
-                    statusLabel = '';
-                    break;
-                case 'good':
-                    statusLabel = '';
-                    break;
-            }
-                card.innerHTML = `
-                    <div class="food-status ${item.status}"></div>
-                    <h3>${item.name}</h3>
-                    <p><i class="far fa-calendar"></i> ${expiryText}</p>
-                    <p><i class="fas fa-tag"></i> ${capitalizeFirstLetter(item.category)}</p>
-                    <div class="card-actions">
-                        <button class="delete-btn" onclick="deleteFood(${item.id})">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                `;
-                foodGrid.appendChild(card);
-            });
-        }
+            card.innerHTML = `
+                <div class="food-status ${item.status}"></div>
+                <h3>${item.name}</h3>
+                <p><i class="far fa-calendar"></i> ${expiryText}</p>
+                <p><i class="fas fa-tag"></i> ${capitalizeFirstLetter(item.category)}</p>
+                <div class="card-actions">
+                    <button class="delete-btn" onclick="deleteFood(${item.id})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `;
+            foodGrid.appendChild(card);
+        });
+    }
+    
     
     function calculateDaysUntilExpiry(expiryDate) {
         const today = new Date();

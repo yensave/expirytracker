@@ -1,91 +1,92 @@
-<!-- Login without backend-->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Inventory</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <style>
-        .strength-bar {
-            width: 100%;
-            height: 10px;
-            background-color: #ccc;
-            border-radius: 5px;
-            margin-top: 10px;
-            overflow: hidden;
-        }
-
-        .strength-indicator {
-            height: 100%;
-            width: 0;
-            background-color: red;
-            transition: width 0.5s;
-        }
-
-        .input-group input {
-            position: relative;
-        }
-
-        .strength-text {
-            font-size: 12px;
-            margin-top: 5px;
-        }
-
-        .error-message {
-            color: red;
-            font-size: 14px;
-            margin-top: 10px;
-            text-align: center;
-            display: none;
-        }
-    </style>
+    <title>FreshTrack - Track Your Product Expiration Dates</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="login-card animate_animated animate_fadeIn">
-            <h1>Welcome Back</h1>
-            <form id="loginForm">
-                <div class="input-group">
-                    <input type="text" id="username" required>
-                    <label for="username">Username</label>
-                </div>
-                
-                <div class="input-group">
-                    <input type="password" id="password" required>
-                    <label for="password">Password</label>
-                </div>
+    <header>
+        <nav>
+            <div class="logo">FreshTrack</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="login.html">Sign In</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
 
-                <div class="error-message" id="error-message">Invalid username or password</div>
+    <main>
+        <section id="home" class="hero">
+            <h1>Welcome to FreshTrack</h1>
+            <p>Never let your products expire again!</p>
+            <a href="#contact" class="cta-button">Get Started</a>
+        </section>
 
-                <button type="submit">Login</button>
-                
-                <div class="links">
-                    <a href="register.html" class="register-link">Don't have an Account? Create Account</a>
+        <section id="features" class="features">
+            <h2>Our Features</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h3>Easy Tracking</h3>
+                    <p>Effortlessly track expiration dates for all your products.</p>
                 </div>
+                <div class="feature-item">
+                    <h3>Timely Notifications</h3>
+                    <p>Receive alerts when your items are nearing expiration.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Reduce Waste</h3>
+                    <p>Minimize food and product waste with our smart tracking system.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>User-Friendly Interface</h3>
+                    <p>Intuitive design for easy management of your items.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="testimonials">
+            <h2>What Our Users Say</h2>
+            <div class="testimonial-container">
+                <div class="testimonial">
+                    <p>"FreshTrack has helped me save money and reduce waste. It's a game-changer!"</p>
+                    <cite>- Sarah Johnson</cite>
+                </div>
+                <div class="testimonial">
+                    <p>"I love how easy it is to keep track of my groceries and cosmetics. Highly recommended!"</p>
+                    <cite>- Mike Thompson</cite>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2>Get in Touch</h2>
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
             </form>
-        </div>
-    </div>
+        </section>
+    </main>
 
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const errorMessage = document.getElementById('error-message');
-            
-            if (username === 'user' && password === 'user') {
-                window.location.href = 'dashboard.html';
-            } else {
-                errorMessage.style.display = 'block';
-                setTimeout(() => {
-                    errorMessage.style.display = 'none';
-                }, 3000);
-            }
-        });
-    </script>
+    <footer>
+        <p>&copy; 2025 FreshTrack. All rights reserved.</p>
+    </footer>
+
+    <button id="scroll-to-top" aria-label="Scroll to top">↑</button>
+
+    <script src="script.js"></script>
 </body>
 </html>
+

@@ -1,5 +1,4 @@
-<!-- Login without backend-->
-
+<!-- LOGIN WITH BACKEND-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food Inventory</title>
     <link rel="stylesheet" href="css/style.css">
+    <!-- Add modern animations library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         .strength-bar {
@@ -33,14 +33,6 @@
             font-size: 12px;
             margin-top: 5px;
         }
-
-        .error-message {
-            color: red;
-            font-size: 14px;
-            margin-top: 10px;
-            text-align: center;
-            display: none;
-        }
     </style>
 </head>
 <body>
@@ -49,16 +41,19 @@
             <h1>Welcome Back</h1>
             <form id="loginForm">
                 <div class="input-group">
-                    <input type="text" id="username" required>
-                    <label for="username">Username</label>
+                    <input type="email" id="email" required>
+                    <label for="email">Email</label>
                 </div>
                 
                 <div class="input-group">
-                    <input type="password" id="password" required>
+                    <input type="password" id="password" required oninput="checkPasswordStrength()">
                     <label for="password">Password</label>
                 </div>
 
-                <div class="error-message" id="error-message">Invalid username or password</div>
+                <div class="strength-bar">
+                    <div class="strength-indicator" id="strength-indicator"></div>
+                </div>
+                <p class="strength-text" id="strength-text"></p>
 
                 <button type="submit">Login</button>
                 
@@ -68,24 +63,5 @@
             </form>
         </div>
     </div>
-
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const errorMessage = document.getElementById('error-message');
-            
-            if (username === 'user' && password === 'user') {
-                window.location.href = 'dashboard.html';
-            } else {
-                errorMessage.style.display = 'block';
-                setTimeout(() => {
-                    errorMessage.style.display = 'none';
-                }, 3000);
-            }
-        });
-    </script>
 </body>
 </html>
