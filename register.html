@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - Food Inventory</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="container">
+        <div class="login-card animate__animated animate__fadeIn">
+            <h1>Create Account</h1>
+            <form id="registerForm">
+                <div class="input-group">
+                    <input type="text" id="fullName" required placeholder=" ">
+                    <label for="fullName">Full Name</label>
+                </div>
+
+                <div class="input-group">
+                    <input type="email" id="email" required placeholder=" ">
+                    <label for="email">Email</label>
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" id="password" required placeholder=" ">
+                    <label for="password">Password</label>
+                    <span class="password-toggle">
+                        <i class="fa-solid fa-eye-slash"></i>
+                    </span>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="confirmPassword" required placeholder=" ">
+                    <label for="confirmPassword">Confirm Password</label>
+                </div>
+
+                <button type="submit">Create Account</button>
+                
+                <div class="links">
+                    <a href="index.html" class="login-link">Already have an account? Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="js/register.js"></script>
+</body>
+</html> 

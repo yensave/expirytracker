@@ -1,0 +1,321 @@
+:root {
+    --primary-color: #ff6b6b;
+    --gradient-start: #ff6b6b;
+    --gradient-end: #ffa26b;
+    --background: #fff5f5;
+    --text-color: #2d3436;
+    --accent-color: #ffd93d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--background);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-card {
+    background: white;
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: 0 20px 25px -5px rgba(255, 107, 107, 0.1),
+                0 10px 10px -5px rgba(255, 107, 107, 0.04);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
+    max-width: 400px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    background: -webkit-linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+input {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border: 2px solid #ffe8e8;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #fff;
+}
+
+input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.1);
+    outline: none;
+}
+
+label {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    padding: 0 0.5rem;
+    color: #888;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    background: white;
+}
+
+input:focus + label,
+input:not(:placeholder-shown) + label {
+    transform: translateY(-1.4rem) scale(0.8);
+    background: white;
+    color: var(--primary-color);
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(255, 107, 107, 0.3);
+}
+
+.links {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.links a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.links a:hover {
+    color: var(--gradient-end);
+}
+
+/* Password toggle styles */
+.password-toggle {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 2;
+    color: #888;
+}
+
+.password-toggle:hover {
+    color: var(--primary-color);
+}
+
+.password-toggle i {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.eye-icon,
+.eye-off-icon {
+    transition: all 0.3s ease;
+}
+
+.eye-off-icon {
+    display: none;
+}
+
+.password-visible .eye-icon {
+    display: none;
+}
+
+.password-visible .eye-off-icon {
+    display: inline;
+}
+
+/* Adjust input padding for password fields */
+.input-group input[type="password"] {
+    padding-right: 3rem;
+}
+
+/* Error message styling */
+.error-message {
+    background-color: #ffe8e8;
+    color: var(--primary-color);
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* Terms checkbox styling */
+.terms-checkbox {
+    margin: 1.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.terms-checkbox input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--primary-color);
+}
+
+.terms-checkbox label {
+    position: static;
+    color: #64748b;
+    font-size: 0.9rem;
+    background: none;
+    padding: 0;
+    transform: none;
+}
+
+/* Loading spinner */
+.spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Shapes background */
+.shapes {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(50px);
+    opacity: 0.15;
+    animation: float 20s infinite;
+}
+
+.shape:nth-child(1) {
+    width: 500px;
+    height: 500px;
+    top: -250px;
+    left: -250px;
+    background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+}
+
+.shape:nth-child(2) {
+    width: 400px;
+    height: 400px;
+    bottom: -200px;
+    right: -200px;
+    background: linear-gradient(45deg, #ffa26b, #ff6b6b);
+    animation-delay: -5s;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(100px, 100px) rotate(180deg); }
+    100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+@media (max-width: 480px) {
+    .login-card {
+        padding: 30px 20px;
+    }
+} 
+
+/* Register link styles */
+.register-link {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.register-link p {
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.register-button {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.register-button:hover {
+    background: var(--gradient-end);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(255, 107, 107, 0.2);
+}
+
+/* Existing link styles */
+.links {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.forgot-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.forgot-link:hover {
+    color: var(--gradient-end);
+} 
