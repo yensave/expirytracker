@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Tracker - Dashboard</title>
+    <title>Fresh Track - Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/dashboard.css">
@@ -12,18 +12,26 @@
     <nav class="sidebar">
         <div class="logo">
             <i class="fas fa-utensils"></i>
-            <span>Food Tracker</span>
+            <span>Fresh Track</span>
         </div>
         <ul class="nav-links">
             <li class="active">
                 <a href="#"><i class="fas fa-home"></i> Dashboard</a>
             </li>
             <li>
-                <a href="#" id="addFoodLink"><i class="fas fa-plus"></i> Add Food</a>
+                <a href="#" id="addFoodLink"><i class="fas fa-plus"></i> Add Items</a>
             </li>
             <li>
-                <a href="#"><i class="fas fa-clock"></i> Expiring Soon</a>
+                <a href="#" class="expiring-soon" data-section="expiring-soon">
+                    <i class="far fa-clock"></i> Expiring Soon
+                </a>
             </li>
+            <li>
+                <a href="#" class="expired" data-section="expired">
+                <i class="far fa-clock"></i> Expired 
+                </a>
+            </li>
+        
             <li class="logout">
                 <a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </li>
@@ -35,7 +43,7 @@
             <div class="header-content">
                 <h1>Food Tracker Dashboard</h1>
                 <button class="add-food-btn">
-                    <i class="fas fa-plus"></i> Add New Food
+                    <i class="fas fa-plus"></i> Add Items
                 </button>
             </div>
         </header>
@@ -65,7 +73,7 @@
         </div>
 
         <section class="food-list">
-            <h2>Your Food Items</h2>
+            <h2>Your Products</h2>
             <div class="food-grid">
                 <!-- Food items will be added here dynamically -->
             </div>
@@ -76,22 +84,25 @@
     <div class="modal" id="addFoodModal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>Add New Food Item</h2>
+            <h2>Add a product</h2>
             <form id="addFoodForm">
                 <div class="form-group">
-                    <label for="foodName">Food Name</label>
-                    <input type="text" id="foodName" required>
+                    <label for="foodName">Product Name</label>
+                    <input type="text" id="foodName" placeholder="Enter product name" required>
                 </div>
                 <div class="form-group">
                     <label for="category">Category</label>
                     <select id="category" required>
                         <option value="">Select Category</option>
-                        <option value="dairy">Dairy</option>
-                        <option value="meat">Meat</option>
-                        <option value="vegetables">Vegetables</option>
-                        <option value="fruits">Fruits</option>
-                        <option value="grains">Grains</option>
-                        <option value="drinks">Drinks</option>
+                        <option value="food">Food product</option>
+                        <option value="cosmetics">Cosmetics</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="subcategory">Subcategory</label>
+                    <select id="subcategory" required>
+                        <option value="">Select Subcategory</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -102,6 +113,7 @@
             </form>
         </div>
     </div>
+    
 
     <script src="js/dashboard.js"></script>
 </body>

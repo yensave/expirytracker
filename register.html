@@ -14,11 +14,12 @@
         <div class="shape"></div>
     </div>
 
-    <div class="container">
-        <div class="login-card animate__animated animate__fadeIn">
-            <h1>Create Account</h1>
-            <form id="registerForm">
-                <div class="input-group">
+    <body>
+        <div class="container">
+            <div class="login-card animate__animated animate__fadeIn">
+                <h1>Create Account</h1>
+                <form id="registerForm">
+                    <div class="input-group">
                     <input type="text" id="fullName" required placeholder=" ">
                     <label for="fullName">Full Name</label>
                 </div>
@@ -29,15 +30,19 @@
                 </div>
                 
                 <div class="input-group">
-                    <input type="password" id="password" required placeholder=" ">
+                    <input type="password" id="password" required placeholder=" " oninput="checkPasswordStrength()">
                     <label for="password">Password</label>
                     <span class="password-toggle">
                         <i class="fa-solid fa-eye-slash"></i>
                     </span>
+                    <div class="strength-bar">
+                        <div class="strength-indicator" id="strength-indicator"></div>
+                    </div>
+                    <p class="strength-text" id="strength-text"></p>
                 </div>
 
                 <div class="input-group">
-                    <input type="password" id="confirmPassword" required placeholder=" ">
+                    <input type="password" id="confirmPassword" oninput="checkPasswordStrength()">
                     <label for="confirmPassword">Confirm Password</label>
                 </div>
 
@@ -50,5 +55,58 @@
         </div>
     </div>
     <script src="js/register.js"></script>
+    <script>
+        function checkPasswordStrength() {
+            const password = document.getElementById('password').value;
+            const strengthBar = document.querySelector('.strength-bar');
+            const strengthIndicator = document.getElementById('strength-indicator');
+            const strengthText = document.getElementById('strength-text');
+
+            if (password.length === 0) {
+                strengthBar.style.display = 'none';
+                strengthText.style.display = 'none';
+                return;
+            }
+
+            strengthBar.style.display = 'block';
+            strengthText.style.display = 'block';
+
+            let strength = 0;
+            if (password.length >= 8) strength++;
+            if (password.match(/[A-Z]/)) strength++;
+            if (password.match(/[a-z]/)) strength++;
+            if (password.match(/[0-9]/)) strength++;
+            if (password.match(/[^A-Za-z0-9]/)) strength++;
+
+            switch (strength) {
+                case 0:
+                case 1:
+                    strengthIndicator.style.width = '20%';
+                    strengthIndicator.style.backgroundColor = '#FF4D4D';
+                    strengthText.textContent = 'Weak';
+                    break;
+                case 2:
+                    strengthIndicator.style.width = '40%';
+                    strengthIndicator.style.backgroundColor = '#FFA500';
+                    strengthText.textContent = 'Fair';
+                    break;
+                case 3:
+                    strengthIndicator.style.width = '60%';
+                    strengthIndicator.style.backgroundColor = '#FFD700';
+                    strengthText.textContent = 'Good';
+                    break;
+                case 4:
+                    strengthIndicator.style.width = '80%';
+                    strengthIndicator.style.backgroundColor = '#2E6F40';
+                    strengthText.textContent = 'Strong';
+                    break;
+                case 5:
+                    strengthIndicator.style.width = '100%';
+                    strengthIndicator.style.backgroundColor = '#48BB78';
+                    strengthText.textContent = 'Very Strong';
+                    break;
+            }
+        }
+    </script>
 </body>
 </html> 
