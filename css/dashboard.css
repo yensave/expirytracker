@@ -70,6 +70,23 @@ body {
 .logout {
     margin-top: 50px;
 }
+.nav-links li a {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    color: var(--dark-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.nav-links li a:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#profileLink {
+    margin-top: auto;
+}
 
 /* Main Content Styles */
 .main-content {
@@ -160,7 +177,7 @@ header {
 .food-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
+    gap: 40px;
 }
 
 .food-card {
@@ -170,6 +187,7 @@ header {
     position: relative;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
+    margin-bottom: 10px;
 }
 
 .food-card:hover {
@@ -371,4 +389,42 @@ header {
 
 .no-items p {
     color: #666;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.nav-links {
+    flex-grow: 1;
+}
+
+.profile-section {
+    margin-top: auto;
+    padding: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile-section a {
+    display: flex;
+    align-items: center;
+    color: var(--light-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.profile-section a:hover {
+    color: var(--primary-color);
+}
+
+.profile-section i {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.logout {
+    padding: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }

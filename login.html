@@ -1,52 +1,37 @@
-<!-- Login without backend-->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Inventory</title>
+    <title>Food Inventory - Voice Login</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
-        .strength-bar {
-            width: 100%;
-            height: 10px;
-            background-color: #ccc;
+        .voice-login-btn {
+            background-color: #ff6b6b;
+            color: white;
+            padding: 10px 15px;
+            border: none;
             border-radius: 5px;
+            cursor: pointer;
             margin-top: 10px;
-            overflow: hidden;
         }
 
-        .strength-indicator {
-            height: 100%;
-            width: 0;
-            background-color: red;
-            transition: width 0.5s;
+        .voice-login-btn:hover {
+            background-color: #45a049;
         }
 
-        .input-group input {
-            position: relative;
-        }
-
-        .strength-text {
-            font-size: 12px;
-            margin-top: 5px;
-        }
-
-        .error-message {
-            color: red;
-            font-size: 14px;
+        #feedback {
             margin-top: 10px;
             text-align: center;
-            display: none;
+            font-style: italic;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="login-card animate_animated animate_fadeIn">
-            <h1>Welcome Back</h1>
+            <h1>Welcome Back!</h1>
             <form id="loginForm">
                 <div class="input-group">
                     <input type="text" id="username" required>
@@ -62,6 +47,9 @@
 
                 <button type="submit">Login</button>
                 
+                <button type="button" id="voiceLoginBtn" class="voice-login-btn" onclick="voiceLogin()">Voice Login</button>
+                <div id="feedback"></div>
+                
                 <div class="links">
                     <a href="register.html" class="register-link">Don't have an Account? Create Account</a>
                 </div>
@@ -70,6 +58,8 @@
     </div>
 
     <script>
+        const PASSWORD = "user"; // Voice login password
+
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -86,6 +76,49 @@
                 }, 3000);
             }
         });
+
+        // Voice Login Functionality
+        function voiceLogin() {
+            const feedbackElement = document.getElementById("feedback");
+            feedbackElement.innerText = '🔊 Please say your credential.';
+
+            // Check for browser support
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRecognition) {
+                feedbackElement.innerText = '⚠ Your browser does not support Speech Recognition.';
+                return;
+            }
+
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'en-US';
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+
+            recognition.start();
+
+            recognition.onresult = function(event) {
+                const spokenText = event.results[0][0].transcript.trim();
+                console.log('Recognized Text:', spokenText);
+                if (spokenText.toLowerCase().includes(PASSWORD.toLowerCase())) {
+    // Successful login {
+                    feedbackElement.innerText = '✅ Voice authentication successful. Redirecting...';
+                    setTimeout(() => {
+                        window.location.href = "dashboard.html";
+                    }, 1500);
+                } else {
+                    feedbackElement.innerText = '⚠ Voice authentication failed. Please try again.';
+                }
+            };
+
+            recognition.onerror = function(event) {
+                console.error('Speech Recognition Error:', event.error);
+                feedbackElement.innerText = '⚠ Error occurred during voice recognition. Please try again.';
+            };
+
+            recognition.onend = function() {
+                console.log('Speech recognition service disconnected');
+            };
+        }
     </script>
 </body>
 </html>
